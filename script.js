@@ -9,13 +9,21 @@
 //    * Después de generar esta segunda lista, añadid el atributo disabled al último botón.
 // Suerte!
 
+
+
+// Función que resuelve la primera parte del ejercicio
 const parte1 = () => {
+
+  // se guarda el elemento que contiene la clase selected
   let selected = document.getElementsByClassName("selected")[0];
 
+  // se guarda el padre del elemento anterior
   let liSelected = selected.parentNode;
 
+  // se guarda el padre del elemento anterior
   let list1 = liSelected.parentNode;
 
+  // se guardan los elementos "span" de la lista 1
   let spanOfList1 = list1.getElementsByTagName("span");
 
 
@@ -85,8 +93,6 @@ const parte2 = () => {
 window.addEventListener("load", onLoad);
 
 function onLoad() {
-  console.log("hi");
-
   // ejecución de la primera parte
   parte1();
 
