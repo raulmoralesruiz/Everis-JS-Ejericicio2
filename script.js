@@ -9,26 +9,15 @@
 //    * Después de generar esta segunda lista, añadid el atributo disabled al último botón.
 // Suerte!
 
-const funcion1 = () => {
-  //
-};
-
-window.addEventListener("load", onLoad);
-
-function onLoad() {
-  console.log("hi");
-
+const parte1 = () => {
   let selected = document.getElementsByClassName("selected")[0];
-  // console.log(selected);
 
   let liSelected = selected.parentNode;
-  // console.log(liSelected);
 
   let list1 = liSelected.parentNode;
-  // console.log(list1);
 
   let spanOfList1 = list1.getElementsByTagName("span");
-  // console.log(spanOfList1);
+
 
   // se recorren todos los span de la lista 1
   for (let i = 0; i < spanOfList1.length; i++) {
@@ -39,17 +28,68 @@ function onLoad() {
     elemento.classList.add("element-" + (i + 1));
   }
 
-  // Tras añadir las clases, haced uso de "querySelectorAll" para obtener solo los elementos "li" con valor par (teniendo en cuenta que el primer elmento es el 1) y, a continuación, eliminadlos.
 
   // se obtienen todos los elementos "li"
   let liElements = document.querySelectorAll("li");
-  // console.log(liElements);
 
   // se obtiene el padre de los elementos "li" anteriores
   let padreLiElements = liElements[0].parentNode;
-  // console.log(padreLiElements);
 
   // se eliminan los hijos correspondientes
   padreLiElements.removeChild(liElements[1]);
   padreLiElements.removeChild(liElements[3]);
+};
+
+
+
+const parte2 = () => {
+  // se obtiene la lista2
+  let lista2 = document.getElementById("list2");
+
+  // se obtienen los elementos "li" de la lista1
+  let liLista1 = list1.getElementsByTagName("li");
+
+  // se recorren todos los span de la lista 1
+  for (let i = 0; i < liLista1.length; i++) {
+    // se define el elemento recorrido
+    let elemento = liLista1[i];
+
+    // se crea elemento tipo li
+    let newLi = document.createElement("li");
+    
+
+    // se crea elemento tipo botón
+    let newButton = document.createElement("button");
+    
+    // se copia el texto del elemento recorrido al botón
+    newButton.textContent = elemento.textContent;
+    
+    // se copian las clases del elemento recorrido al botón
+    newButton.classList = elemento.firstChild.classList;
+
+
+    // se inserta el botón a la fila creada 
+    newLi.appendChild(newButton);
+
+    // se inserta la fila creada a la lista2
+    lista2.appendChild(newLi);
+  }
+
+  // se obtiene el último botón
+  let lastButton = lista2.lastChild.firstChild;
+
+  // se deshabilita el último botón
+  lastButton.disabled = true;
+};
+
+window.addEventListener("load", onLoad);
+
+function onLoad() {
+  console.log("hi");
+
+  // ejecución de la primera parte
+  parte1();
+
+  // ejecución de la segunda parte
+  parte2();
 }
